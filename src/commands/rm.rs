@@ -28,6 +28,7 @@ pub fn run(name: &str, force: bool, delete_branch: bool) -> Result<()> {
     let branch = entry.branch.clone();
     let path = entry.path.clone();
 
+    eprintln!("removing worktree: {}...", path.display());
     crate::git::worktree_remove(&path, force)
         .with_context(|| format!("removing worktree '{}'", name))?;
     eprintln!("removed worktree: {}", path.display());
